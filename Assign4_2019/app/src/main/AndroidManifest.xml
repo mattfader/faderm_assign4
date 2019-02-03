@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="sda.oscail.edu.actiontabs">
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACTION_IMAGE_CAPTURE" />
 
 
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +24,14 @@
                 android:resource="@xml/file_paths"
                 tools:replace="android:resource"/>
         </provider>
+        <receiver
+            android:name=".Receiver"
+            android:exported="false" >
+            <intent-filter>
+                <action   android:name="sda.oscail.edu.actiontabs.show_toast" >
+                </action>
+            </intent-filter>
+        </receiver>
    <!--
        <fragment
             android:name=".ProdctsFragment"

@@ -21,7 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
+        import android.widget.Switch;
+        import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,11 +32,12 @@ import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Intent.EXTRA_STREAM;
-import static sda.oscail.edu.actiontabs.R.id.imageView;
+        import static sda.oscail.edu.actiontabs.R.id.contentPanel;
+        import static sda.oscail.edu.actiontabs.R.id.imageView;
 
 
 //Adapted from code written by Colette Kirwan. DCU Open Education
-//Modified by Matthew Fader for assignment 3 SDA 2018
+//Modified by Matthew Fader for assignment 4 SDA 2019
 
 public class OrderFragment extends Fragment
 {
@@ -135,7 +137,7 @@ public class OrderFragment extends Fragment
             private PackageManager packageManager;
 
             public PackageManager getPackageManager() {
-                return packageManager;
+               return packageManager;
             }
 
             @Override
@@ -160,7 +162,7 @@ public class OrderFragment extends Fragment
                         // Continue only if the File was successfully created
                         if (mPhotoFile != null) {
                             //here we grab the Uri, (note we are using the authority it's our applicationID again)
-                            mPhotoURI = FileProvider.getUriForFile(getContext(),"sda.oscail.edu.actiontabs/files/Pictures/", mPhotoFile);
+                            mPhotoURI = FileProvider.getUriForFile(getActivity(),"sda.oscail.edu.actiontabs", mPhotoFile);
 
 
                             //take the photo replacing the file at the location.
@@ -218,6 +220,7 @@ public class OrderFragment extends Fragment
                     //ImageView.setImageResource(mPhotoURI);
                 }
 
+
                 /**
                  * Returns the Email Body Message.
                  * <p> Email body message is created used prescription related data inputed from user </p>
@@ -239,12 +242,29 @@ public class OrderFragment extends Fragment
                     return orderMessage; // output to message body of email.
                     //update screen
                 }
+                {
 
+            final Button switchy = (Switch) root.findViewById(R.id.switch1);
+                    switchy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+            if (switchy !=null){
+             // state in email that the order is for collection.
+
+             // attach collection point information in email rather than delivery address
+             // make method to force collection tab, and store variable information.
+            }
+            else{
+                //state in email that order is to be delivered!
+                // attach address information as expected.
+            }
+                }
                 /**
                  * Send email pieces together the remaining details to have a fully filled in email to send the t-shirt, if customer name is not the same as the
                  * value in Regex i.e. editText field in activity_order.xml it will stop the email making process, and notify the user of the error.
                  * @param v
                  */
+
                 {
                     Button sendbtn = (Button) root.findViewById(R.id.button);
                     sendbtn.setOnClickListener(new View.OnClickListener() {
@@ -285,10 +305,6 @@ public class OrderFragment extends Fragment
 
                 }
             });
-        return root;
-    }
-
-    public PackageManager getPackageManager() {
-        return packageManager;
-    }
-}
+        //return root;
+                    }});
+    return root;}}
